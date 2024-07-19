@@ -1,18 +1,18 @@
 <?php get_header()?>
 
 <!-- ABOUT PAGE -->
-
+<!-- FOR ABOUT PAGE ONLY -->
+<?php if(is_page('about')) {?>
     <section class="aboutBanner">
             <div class="container">
                 <div class="aboutBanner__wrapper">
 
                     <div class="aboutBanner__text">
                         <p>Things you need to know</p>
-                        <h2>About Me</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum animi nisi labore quisquam consequatur optio nesciunt? Nisi repellendus, autem iusto rerum nesciunt laudantium, ipsa voluptatem doloribus, culpa libero voluptates ad.</p>
-                        <br>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum animi nisi labore quisquam consequatur optio nesciunt? Nisi repellendus, autem iusto rerum nesciunt laudantium, ipsa voluptatem doloribus, culpa libero voluptates ad.</p>
-
+                        <h2><?php the_field('about-title')?></h2>
+                        <p><?php the_field('about-text')?></p>
+                        
+            
                         
                         <div class="about__icons">
                             <ul>
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="aboutBanner__img">
-                        <img src="./img/about/about me 1.png" alt="">
+                    <img src="<?php the_field('about-img')?>" alt="">
                     </div>
                 </div>
             </div>
@@ -45,76 +45,48 @@
 
             <div class="aboutProject__wrapper">
 
+
+            <?php 
+                $projects = new WP_Query(array(
+                    'post_type' => 'projects',
+                    'posts_per_page' => -1
+                ))
+            ?>
+
+            <?php if($projects->have_posts()) : while($projects->have_posts()) : $projects->the_post()?>
+
+
                 <div class="aboutProject__card">
-                    <img src="./img/about/unsplash_rN1y-_EV8kEproject1.png" alt="">
+                    <img src="<?php the_field('project-img')?>" alt="">
                     
                     <div class="aboutProject__card--details">
-                        <h3>Frontline Business Solutions Inc.</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, ea iure est enim quasi esse.</p>
+                        <h3><?php the_title()?></h3>
+                        <p><?php the_content()?></p>
                     </div>
                  
                 </div>
 
-                <div class="aboutProject__card">
-                    <img src="./img/about/unsplash_mr4JG4SYOF8.png" alt="">
-                    
-                    <div class="aboutProject__card--details">
-                        <h3>Frontline Business Solutions Inc.</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, ea iure est enim quasi esse.</p>
-                    </div>
-                 
-                </div>
+                <?php endwhile; 
+                else:
+                    echo "No more service";
+                endif;
+                wp_reset_postdata();
+                ?>
 
-                <div class="aboutProject__card">
-                    <img src="./img/about/unsplash_vIDmJvVLWKE.png" alt="">
-                    
-                    <div class="aboutProject__card--details">
-                        <h3>Frontline Business Solutions Inc.</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, ea iure est enim quasi esse.</p>
-                    </div>
-                 
-                </div>
 
-                <div class="aboutProject__card">
-                    <img src="./img/about/unsplash_Cys3W7_MXDU.png" alt="">
-                    
-                    <div class="aboutProject__card--details">
-                        <h3>Frontline Business Solutions Inc.</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, ea iure est enim quasi esse.</p>
-                    </div>
-                 
-                </div>
-
-                <div class="aboutProject__card">
-                    <img src="./img/about/unsplash_Epw-SqZYeyw.png" alt="">
-                    
-                    <div class="aboutProject__card--details">
-                        <h3>Frontline Business Solutions Inc.</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, ea iure est enim quasi esse.</p>
-                    </div>
-                 
-                </div>
-
-                <div class="aboutProject__card">
-                    <img src="./img/about/unsplash_jukKJSr9FcA.png" alt="">
-                    
-                    <div class="aboutProject__card--details">
-                        <h3>Frontline Business Solutions Inc.</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, ea iure est enim quasi esse.</p>
-                    </div>
-                 
-                </div>
-
-                
 
             </div>
         </div>
     </section>
 
+    <?php get_template_part('partials/part', 'cta')?>
+
+    <?php }?>
 <!-- END ABOUT -->
 
 
 <!-- UPDATE PAGE -->
+<?php if(is_page('update')) {?>
 
     <section class="update">
         <div class="container">
@@ -124,34 +96,50 @@
             </div>
             <div class="update__wrapper">
                 <div class="update__left">
+
+
+                <?php 
+                $latests = new WP_Query(array(
+                    'post_type' => 'latests',
+                    'posts_per_page' => 2,
+                    'offset' => 1
+                ))
+                ?>
+
+                <?php if($latests->have_posts()) : while($latests->have_posts()) : $latests->the_post()?>
+
+
                     <div class="update__content">
-                        <img src="./img/updates/unsplash_dJpupM4LiS4.png" alt="">
+                    <?php 
+                    if(has_post_thumbnail()) {
+                        the_post_thumbnail();
+                    }
+                    ?>
 
                         <ul>
-                            <li><i class="fa-solid fa-user"></i> Roy Balaaldia</li>
-                            <li><i class="fa-solid fa-calendar-days"></i> March 21. 2022</li>
-                            <li><i class="fa-solid fa-tags"></i>Web Design | Wireframe</li>
+                            <li><i class="fa-solid fa-user"></i> <?php the_author()?></li>
+                            <li><i class="fa-solid fa-calendar-days"></i> <?php echo get_the_date('M j, Y');?></li>
+                            <li><i class="fa-solid fa-tags"></i> <?php the_field('categories-tag')?></li>
                         </ul>
-                        <h2>Designing Concept</h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, ea voluptate veniam placeat neque nisi illo nesciunt, maiores hic cupiditate laboriosam quas. Vero laudantium quisquam saepe eum hic esse cupiditate.</p>
+                        <h2><?php the_title()?></h2>
+                        <p><?php the_content()?></p>
                         <a href="">Read more...</a>
                     </div>
+
+                    <?php endwhile; 
+                    else:
+                        echo "No more service";
+                    endif;
+                    wp_reset_postdata();
+                    ?>
                     
 
                     <span class="line"></span>
 
-                    <div class="update__content">
-                        <img src="./img/updates/unsplash_FVgECvTjlBQ.png" alt="">
 
-                        <ul>
-                            <li><i class="fa-solid fa-user"></i> Roy Balaaldia</li>
-                            <li><i class="fa-solid fa-calendar-days"></i> March 21. 2022</li>
-                            <li><i class="fa-solid fa-tags"></i>Web Design | Wireframe</li>
-                        </ul>
-                        <h2>Designing Code</h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, ea voluptate veniam placeat neque nisi illo nesciunt, maiores hic cupiditate laboriosam quas. Vero laudantium quisquam saepe eum hic esse cupiditate.</p>
-                        <a href="">Read more...</a>
-                    </div>
+
+
+
                 </div>
                 <div class="update__right">
                     <div class="update__categories">
@@ -182,31 +170,30 @@
                     <div class="update__recent">
                         <h3>RECENT POST</h3>
 
+
+                    <?php 
+                        $recents = new WP_Query(array(
+                            'post_type' => 'recents',
+                            'posts_per_page' => 3,
+                        ))
+                    ?>
+                    <?php if($recents->have_posts()) : while($recents->have_posts()) : $recents->the_post()?>
+
                         <div class="update__recent__details">
-                            <img src="./img/updates/unsplash_Im7lZjxeLhg.png" alt="">
+                            <img src="<?php the_field('recent-img')?>" alt="">
 
                             <div class="update__recent--text">
-                                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                                <p>March 21, 2022</p>
-                            </div>
-                        </div>
-                        <div class="update__recent__details">
-                            <img src="./img/updates/unsplash_MxVkWPiJALs.png" alt="">
-
-                            <div class="update__recent--text">
-                                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                                <p>March 21, 2022</p>
-                            </div>
-                        </div>
-                        <div class="update__recent__details">
-                            <img src="./img/updates/unsplash_OqtafYT5kTw.png" alt="">
-
-                            <div class="update__recent--text">
-                                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                                <p>March 21, 2022</p>
+                                <h4><?php the_title()?></h4>
+                                <p><?php echo get_the_date('M j, Y');?></p>
                             </div>
                         </div>
 
+                    <?php endwhile; 
+                        else:
+                            echo "No more service";
+                        endif;
+                        wp_reset_postdata();
+                    ?>
 
                     </div>
 
@@ -236,34 +223,39 @@
             </div>
         </div>
     </section>
+    
+    <?php get_template_part('partials/part', 'cta')?>
 
+    <?php }?>
 <!-- END UPDATE -->
 
 
-<!-- CONTACT PAGE -->
 
+
+<!-- CONTACT PAGE -->
+<?php if(is_page('contact')) {?>
     <section class="contact">
         <div class="container">
             <div class="contact__wrapper">
 
                 <div class="contact__text">
                    <div class="contact__title">
-                    <h2>Contact</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita cumque voluptatum repudiandae.</p>
+                    <h2><?php the_field('contact-title')?></h2>
+                    <p><?php the_field('contact-text')?></p>
                    </div>
                    
                    <table class="contact--details"> 
                     <tr>
                         <td><i class="fa-solid fa-phone-flip"></i></td>
-                        <td><p>+63 967 362 5919</p></td>
+                        <td><p><?php the_field('contact-num')?></p></td>
                     </tr>
                     <tr>
                         <td><i class="fa-solid fa-envelope"></i></td>
-                        <td><p>inquire@creativevisualdesigns.com</p></td>
+                        <td><p><?php the_field('contact-email')?></p></td>
                     </tr>
                     <tr>
                         <td><i class="fa-solid fa-map-pin"></i></td>
-                        <td><p>Baloc Road, Brgy San Ignacio San Pablo City Laguna Philippines 400</p></td>
+                        <td><p><?php the_field('contact-address')?></p></td>
                     </tr>
                    </table>
 
@@ -293,6 +285,7 @@
         </div>
     </section>
 
+    <?php }?>
 <!-- END CONTACT -->
 
 

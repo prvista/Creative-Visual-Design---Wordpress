@@ -152,7 +152,7 @@
 .header{
     background-color: var(--clr-dark);
     padding: 1rem 0;
-    /* position: fixed; */
+    position: fixed;
     width: 100%;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     z-index: 999;
@@ -165,10 +165,16 @@
     align-items: center;
   }
 
-  .header__nav{
-    display: flex;
+  .header__nav nav{
     gap: 3rem;
+    color: var(--clr-light);
+    display: flex;
   } 
+
+  .header__wrapper ul{
+    display: flex;
+    gap: 2rem;
+  }
 
   .header__nav li a{
     font-size: 2rem;
@@ -347,7 +353,7 @@
   }
 
   .homeBanner__img img{
-    width: 110rem;
+    width: 80rem;
   }
 
 /* MOBILE RESPONSIVE FOR HOME BANNER */
@@ -395,7 +401,7 @@
 
 .homeServices__wrapper{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(35rem,1fr));
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .homeServices__card{
@@ -424,6 +430,7 @@
 .homeServices__text p{
     color: var(--clr-light);
     text-align: justify;
+    height: 10rem;
 
 }
 
@@ -578,6 +585,7 @@
     background-color: var(--clr-light); 
     /* max-width: 90%; */
     max-width: 40rem;
+    width: 40rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-bottom: 1rem;
     border-radius: 3rem;
@@ -586,12 +594,17 @@
 .homeTrend__card img{
     /* width: 40rem; */
     width: 100%;
+    min-height: 10rem;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 1rem;
 }
 
 .homeTrend__card--details{
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 3rem;
 }
 
@@ -604,6 +617,7 @@
 
 .homeTrend__card--details p{
     font-weight: 500;
+    height: 2rem;
 }
 
 .homeTrend__card--details a{
@@ -1081,7 +1095,10 @@
 }
 
 .update__content img{
-    width: 280rem;
+    width: 100%;
+    height: 50rem;
+        /* width: 280rem; */
+    /* height: auto; */
 }
 
 .update__content a{
