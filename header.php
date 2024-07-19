@@ -7,8 +7,11 @@
     <title><?php is_front_page() ? bloginfo('title') : wp_title('')?></title>
   <link rel="shortcut icon" href="./img/home/Brand.svg">
 </head>
-<body>
+<body data-barba="wrapper">
 <?php wp_head()?>
+
+<div class="fixed top-0 left-0 z-50 w-full h-screen scale-y-0 bg-dark" id="page-transition"></div>
+
     <header class="header">
         <div class="container">
             <div class="header__wrapper">
@@ -35,3 +38,4 @@
             </div>
         </div>
     </header>
+

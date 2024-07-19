@@ -1,4 +1,5 @@
 <?php get_header()?>
+<main data-barba="container" data-barba-namespace="home">
 
     <section class="homeBanner">
             <div class="container">
@@ -125,5 +126,5 @@
 
 <?php get_footer() ?>
 
-
+</main>
 

@@ -3,6 +3,8 @@
 <!-- ABOUT PAGE -->
 <!-- FOR ABOUT PAGE ONLY -->
 <?php if(is_page('about')) {?>
+<main data-barba="container" data-barba-namespace="about">
+
     <section class="aboutBanner">
             <div class="container">
                 <div class="aboutBanner__wrapper">
@@ -80,13 +82,15 @@
     </section>
 
     <?php get_template_part('partials/part', 'cta')?>
-
+    </main>
     <?php }?>
 <!-- END ABOUT -->
 
 
 <!-- UPDATE PAGE -->
 <?php if(is_page('update')) {?>
+<main data-barba="container" data-barba-namespace="update">
+
 
     <section class="update">
         <div class="container">
@@ -225,7 +229,7 @@
     </section>
     
     <?php get_template_part('partials/part', 'cta')?>
-
+    </main>
     <?php }?>
 <!-- END UPDATE -->
 
@@ -234,6 +238,8 @@
 
 <!-- CONTACT PAGE -->
 <?php if(is_page('contact')) {?>
+<main data-barba="container" data-barba-namespace="contact">
+
     <section class="contact">
         <div class="container">
             <div class="contact__wrapper">
@@ -284,7 +290,7 @@
             </div>
         </div>
     </section>
-
+    </main>
     <?php }?>
 <!-- END CONTACT -->
 
