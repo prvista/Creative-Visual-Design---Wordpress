@@ -1,4 +1,3 @@
-<?php wp_footer()?>
 
     <footer class="footer">
             <div class="container">
@@ -24,6 +23,25 @@
                 </div>
             </div>
     </footer>
+
+<?php wp_footer()?>
+
+            <script>
+
+            let tl = gsap.timeline();
+
+            tl.from('.branding', {opacity: 0 ,x:'-20px', duration: 2})
+            .from('.header__nav', {opacity: 0 ,x:'20px', duration: 2})
+
+
+
+            let homeBanner = gsap.timeline();
+
+            homeBanner.from('.homeBanner', {opacity: 0 ,y:'30px', duration: 2})
+            .from('.homeAbout', {transform: rotate(360deg), duration: 2})
+            // .from('.header__nav', {opacity: 0 ,x:'20px', duration: 2})
+
+            </script>
 
 </body>
 </html>

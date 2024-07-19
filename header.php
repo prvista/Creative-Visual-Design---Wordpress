@@ -17,7 +17,7 @@
             <div class="header__wrapper">
                 <!-- branding -->
                 <div class="branding">
-                <img src="<?php echo get_template_directory_uri()?>/img/home/Brand.svg" alt="img">
+                    <img src="<?php echo get_template_directory_uri()?>/img/home/Brand.svg" alt="img">
                     <h2>Creative <span>Visual </span>Design</h2>
                 </div>
                 <div class="header__nav">
